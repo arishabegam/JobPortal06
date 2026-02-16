@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Job Portal Full Project</title>
+
+<!-- ================= CSS STYLE ================= -->
+<style>
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  color: #333;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: yellow;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 45px;
+}
+
+.btn {
+  background: yellow;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+/* HEADINGS */
+h2 {
+  text-align: center;
+  margin: 20px;
+  color: white;
+}
+
+/* FILTER */
+.filter-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-section select {
+  padding: 8px;
+  border-radius: 20px;
+  margin: 5px;
+}
+
+/* JOB CARDS */
+.job-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.job-card {
+  background: white;
+  width: 250px;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.job-card h3 {
+  color: purple;
+}
+
+/* FORMS */
+form {
+  background: white;
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 20px;
+  border: 1px solid gray;
+}
+
+form button {
+  background: purple;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 10px;
+  background: black;
+  color: white;
+  margin-top: 20px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: black;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    padding: 10px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header>
+  <nav class="navbar">
+    <div class="logo">JobPortal</div>
+    <ul class="nav-links" id="menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#jobs">Jobs</a></li>
+      <li><a href="#postjob">Post Job</a></li>
+      <li><a href="#login">Login</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </nav>
+</header>
+
+<!-- ================= HOME SECTION ================= -->
+<section class="hero" id="home">
+  <h1>Find Your Dream Job</h1>
+  <p>Search and apply for jobs easily</p>
+  <a href="#jobs" class="btn">Browse Jobs</a>
+</section>
+
+<!-- ================= JOBS SECTION ================= -->
+<h2 id="jobs">Available Jobs</h2>
+
+<div class="filter-section">
+  <select id="locationFilter">
+    <option value="all">All Locations</option>
+    <option value="Chennai">Chennai</option>
+    <option value="Bangalore">Bangalore</option>
+  </select>
+
+  <select id="typeFilter">
+    <option value="all">All Types</option>
+    <option value="Full-Time">Full-Time</option>
+    <option value="Internship">Internship</option>
+  </select>
+</div>
+
+<div class="job-container">
+  <div class="job-card" data-location="Chennai" data-type="Full-Time">
+    <h3>Frontend Developer</h3>
+    <p>Chennai | Full-Time</p>
+  </div>
+
+  <div class="job-card" data-location="Bangalore" data-type="Internship">
+    <h3>AI Intern</h3>
+    <p>Bangalore | Internship</p>
+  </div>
+
+  <div class="job-card" data-location="Chennai" data-type="Internship">
+    <h3>UI/UX Designer</h3>
+    <p>Chennai | Internship</p>
+  </div>
+
+  <div class="job-card" data-location="Bangalore" data-type="Full-Time">
+    <h3>Backend Developer</h3>
+    <p>Bangalore | Full-Time</p>
+  </div>
+</div>
+
+<!-- ================= POST JOB ================= -->
+<h2 id="postjob">Post a Job</h2>
+
+<form id="jobForm">
+  <input type="text" placeholder="Company Name" required>
+  <input type="text" placeholder="Job Title" required>
+  <select required>
+    <option value="">Select Location</option>
+    <option>Chennai</option>
+    <option>Bangalore</option>
+  </select>
+  <button type="submit">Post Job</button>
+</form>
+
+<!-- ================= LOGIN ================= -->
+<h2 id="login">Login</h2>
+
+<form>
+  <input type="email" placeholder="Email" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <div id="strengthMessage"></div>
+  <button type="submit">Login</button>
+</form>
+
+<!-- ================= ABOUT ================= -->
+<h2 id="about">About Us</h2>
+<p>JobPortal helps students and companies connect easily.</p>
+
+<!-- ================= CONTACT ================= -->
+<h2 id="contact">Contact Us</h2>
+
+<form id="contactForm">
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Your Email" required>
+  <textarea placeholder="Message"></textarea>
+  <button type="submit">Send</button>
+</form>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© 2026 JobPortal Project</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+
+// NAVBAR TOGGLE
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
+// JOB FILTER
+const locationFilter = document.getElementById("locationFilter");
+const typeFilter = document.getElementById("typeFilter");
+const jobCards = document.querySelectorAll(".job-card");
+
+function filterJobs() {
+  const loc = locationFilter.value;
+  const type = typeFilter.value;
+
+  jobCards.forEach(card => {
+    const matchLoc = loc === "all" || card.dataset.location === loc;
+    const matchType = type === "all" || card.dataset.type === type;
+    card.style.display = (matchLoc && matchType) ? "block" : "none";
+  });
+}
+
+locationFilter.addEventListener("change", filterJobs);
+typeFilter.addEventListener("change", filterJobs);
+
+// PASSWORD STRENGTH
+const password = document.getElementById("password");
+const msg = document.getElementById("strengthMessage");
+
+password.addEventListener("input", () => {
+  const v = password.value;
+  if (v.length < 6) {
+    msg.innerHTML = "Weak";
+    msg.style.color = "red";
+  } 
+  else if (/[A-Z]/.test(v) && /[0-9]/.test(v)) {
+    msg.innerHTML = "Strong";
+    msg.style.color = "green";
+  } 
+  else {
+    msg.innerHTML = "Medium";
+    msg.style.color = "orange";
+  }
+});
+
+// FORM VALIDATION
+document.getElementById("jobForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("Job Posted Successfully!");
+  this.reset();
+});
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("Message Sent Successfully!");
+  this.reset();
+});
+
+</script>
+
+</body>
+</html>
